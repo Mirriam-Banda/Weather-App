@@ -46,10 +46,19 @@ function displayTemperature(response) {
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
-function searchCity(city) {
+function search(city) {
   let apiKey = "02dec0ba3e30e543fo180tcab4906e86";
-  let city = "Lisbon";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=Lisbon&key=02dec0ba3e30e543fo180tcab4906e86&units=metric`;
-
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=02dec0ba3e30e543fo180tcab4906e86&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
 }
+
+function hundleSubmit(event) {
+  event.preventdefualt();
+  let cityInputElement = document.querySelector;
+  search(cityInputElement.value);
+}
+
+search("Lilongwe");
+
+let form = document.querySelector("search-form");
+form.addEventListener("submit", hundleSubmit);
