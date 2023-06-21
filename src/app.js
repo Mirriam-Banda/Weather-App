@@ -58,7 +58,34 @@ function hundleSubmit(event) {
   search(cityInputElement.value);
 }
 
-search("Lilongwe");
+function displayCelsiusTemperature(event) {
+  event.preventDefualt();
+  celsiuslink.classList.add("active");
+  farhrenheitLink.classList.remove("active");
+
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+function displayFarhrenheitTemperature(event) {
+  event.preventDefualt();
+  let temperatureElement = document.querySelector("#temperature");
+
+  celsiuslink.classList.remove("active");
+  farhrenheitLink.classList.add("active");
+  let farhrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(farhrenheitTemperature);
+}
+
+let celsiusTemperature = null;
 
 let form = document.querySelector("search-form");
 form.addEventListener("submit", hundleSubmit);
+
+let celsiuslink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+let farhrenheitLink = document.querySelector("#fahrenheit-link");
+farhrenheitLink.addEventListener("click", displayFarhrenheitTemperature);
+
+search("Lilongwe");
