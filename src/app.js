@@ -41,34 +41,25 @@ function displayTemperature(response) {
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
   iconElement.setAttribute(
     "src",
-    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/few-clouds-day.png`
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 function search(city) {
   let apiKey = "02dec0ba3e30e543fo180tcab4906e86";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=02dec0ba3e30e543fo180tcab4906e86&units=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
 }
 
 function hundleSubmit(event) {
-  event.preventdefualt();
-  let cityInputElement = document.querySelector;
+  event.preventDefault();
+  let cityInputElement = document.querySelector("city-input");
   search(cityInputElement.value);
 }
 
-function displayCelsiusTemperature(event) {
-  event.preventDefualt();
-  celsiuslink.classList.add("active");
-  farhrenheitLink.classList.remove("active");
-
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
-
 function displayFarhrenheitTemperature(event) {
-  event.preventDefualt();
+  event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
 
   celsiuslink.classList.remove("active");
@@ -77,15 +68,23 @@ function displayFarhrenheitTemperature(event) {
   temperatureElement.innerHTML = Math.round(farhrenheitTemperature);
 }
 
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
 let celsiusTemperature = null;
 
-let form = document.querySelector("search-form");
+let form = document.querySelector(".search-form");
 form.addEventListener("submit", hundleSubmit);
-
-let celsiuslink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 let farhrenheitLink = document.querySelector("#fahrenheit-link");
 farhrenheitLink.addEventListener("click", displayFarhrenheitTemperature);
+
+let celsiuslink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("Lilongwe");
