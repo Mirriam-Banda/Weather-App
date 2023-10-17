@@ -13,11 +13,10 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <link rel="stylesheet" href="src/style.css" />
-
-    <title>Weather App</title>
+  <title>Weather App</title>
   </head>
-  <body>
-    <div class="container">
+  <body>  
+  <div class="container">
       <div class="weather-app-wrapper">
         <div class="weather-app">
           <form id="search-form" class="mb-5">
@@ -35,7 +34,7 @@
                 <input
                   type="submit"
                   value="Search"
-                  class="btn btn-primary w-80"
+                  class="btn btn-primary w-90"
                 />
               </div>
             </div>
@@ -53,10 +52,7 @@
                 <img src="" alt="Clear" id="icon" class="float-left" />
                 <div class="float-left">
                   <strong id="temperature"></strong>
-
-                  <span class="units"
-                    ><a href="#" id="celsius-link" class="active">°C</a> |
-                    <a href="#" id="fahrenheit-link">°F</a>
+                  <span class="units">°C</a> |
                   </span>
                 </div>
               </div>
@@ -66,32 +62,17 @@
                 <li>Humidity: <span id="humidity"></span>%</li>
                 <li>Wind: <span id="wind"></span> km/h</li>
               </ul>
-            </div>
-          </div>
-          <div class="weather-forecast">
-            <div class="row">
-              <div class="col-2">
-                <div class="weather-forecast-date">Thu</div>
-                <img
-                  src="https://cdn-icons-png.flaticon.com/128/1163/1163661.png"
-                  alt=""
-                  width="33"
-                />
-                <div class="weather-temperature">
-                  <span class="weather-forecast-temperature-max"> 18° </span>
-                  <span class="weather-forecast-temperature-min"> 12° </span>
-                </div>
               </div>
             </div>
-          </div>
+          <div class="weather-forecast" id="forecast"></div>
         </div>
         <small>
           <a
             href="https://github.com/Mirriam-Banda/Weather-App/tree/main"
             target="_blank"
-            >Open-source code</a
-          >
-          > By Mirriam Banda
+            >Open-source code</a>
+          > 
+          By Mirriam Banda
         </small>
       </div>
     </div>
